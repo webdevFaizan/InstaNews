@@ -19,6 +19,7 @@ export default class NewsItem extends React.Component {
             <h5 className="card-title">{title}</h5>
             <p className="card-text">{description}</p>
             <a href={newsUrl} rel="noreferrer" target="_blank" className="btn btn-sm btn-primary">Read More...</a>
+            {/* Here the rel='noreferrer' has to be added. I have explained this in the docx file, search 'noreferrer'. Basically this is like the security aspect of not sending the data of current session to the new link, or else there could be some serious security risk involved.*/}
           </div>
         </div>      
       </div>
