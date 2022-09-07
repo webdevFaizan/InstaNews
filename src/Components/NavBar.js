@@ -3,10 +3,10 @@ import PropTypes from 'prop-types'
 import {Link} from 'react-router-dom'
 
 export default class NavBar extends Component {
-  static propTypes = {    
-    //Navbar is not receiving any propTypes, this is why this empty, also this object could be added to this class as a property. By delcaring NavBar.propTypes={<object>}
-    // prop: PropTypes
-  }
+  // static propTypes = {    
+  //   //Navbar is not receiving any propTypes, this is why this empty, also this object could be added to this class as a property. By delcaring NavBar.propTypes={<object>}
+  //   // prop: PropTypes
+  // }
 
   //ComponentDidMount() method is also not required because we do not have any state variables to manage in this file.
 
@@ -26,10 +26,12 @@ export default class NavBar extends Component {
                   <li className="nav-item"><Link className="nav-link" to="/technology">Technology<span className="sr-only">(current)</span></Link></li>
                   <li className="nav-item"><Link className="nav-link" to="/business">Business<span className="sr-only">(current)</span></Link></li>
                   <li className="nav-item"><Link className="nav-link" to="/entertainment">Entertainment<span className="sr-only">(current)</span></Link></li>
-                  <li className="nav-item"><Link className="nav-link" to="/general">General<span className="sr-only">(current)</span></Link></li>
+                  <li className="nav-item"><Link className="nav-link" to="/breaking-news">General<span className="sr-only">(current)</span></Link></li>
                   <li className="nav-item"><Link className="nav-link" to="/health">Health<span className="sr-only">(current)</span></Link></li>
                   <li className="nav-item"><Link className="nav-link" to="/science">Science<span className="sr-only">(current)</span></Link></li>
                   <li className="nav-item"><Link className="nav-link" to="/sports">Sports<span className="sr-only">(current)</span></Link></li>
+                  <li className="nav-item"><Link className="nav-link" to="/nation">Sports<span className="sr-only">(current)</span></Link></li>
+                  <li className="nav-item"><Link className="nav-link" to="/world">Sports<span className="sr-only">(current)</span></Link></li>
                 </ul>
                 <form className="form-inline my-2 my-lg-0">
                   <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>

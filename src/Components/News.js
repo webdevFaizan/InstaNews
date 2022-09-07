@@ -26,23 +26,24 @@ export default class News extends Component {
       loading : true,   
       articles : [],
       pageNo: 1,
-      totalResults : 0,
+      totalArticles : 0,
       maximumPages : 0
     }
   }
 
   async componentDidMount(){
     this.setState({loading : true});
-    let url=`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&pageSize=${this.props.articlesOnOnePage}&page=${this.state.pageNo}`;
+    // let url=`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&pageSize=${this.props.articlesOnOnePage}&page=${this.state.pageNo}`;
+    let url=`https://gnews.io/api/v4/top-headlines?&token=${this.props.apiKey}&country=${this.props.country}&topic=${this.props.topic}`
     // let url = "https://google.co.in";
     let data = await fetch(url);
     let jsonData= await data.json();
     // console.log(jsonData);
-    let maximumPages=Math.ceil((jsonData.totalResults)/this.props.articlesOnOnePage)+1;
+    let maximumPages=Math.ceil((jsonData.totalArticles)/10)+1;
     
     this.setState({
       articles : jsonData.articles,
-      totalResults : jsonData.totalResults,
+      totalArticles : jsonData.totalArticles,
       maximumPages : maximumPages,
       loading : false,
       pageNo: 1
@@ -82,7 +83,8 @@ export default class News extends Component {
 
   fetchData=async () =>{    
       this.setState({loading : true});
-      let url=`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&pageSize=${this.props.articlesOnOnePage}&page=${this.state.pageNo+1}`;
+      // let url=`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&pageSize=${this.props.articlesOnOnePage}&page=${this.state.pageNo+1}`;
+      let url=`https://gnews.io/api/v4/top-headlines?&token=${this.props.apiKey}&country=${this.props.country}&topic=${this.props.topic}`
       
       // let url = "https://google.co.in";
       let data = await fetch(url);
@@ -102,7 +104,7 @@ export default class News extends Component {
         <InfiniteScroll
         dataLength={this.state.articles.length}
         next={this.fetchData}
-        hasMore={this.state.articles.length < this.state.totalResults}
+        hasMore={this.state.articles.length < this.state.totalArticles}
         loader={<Loading/>}
         endMessage={
           <p style={{ textAlign: 'center' }}>
@@ -115,11 +117,10 @@ export default class News extends Component {
           {this.state.articles.map((element)=>{
             
             return <div className="newsCard" key={element.url}>
-              <NewsItem title={element.title} description={element.description} imageUrl={element.urlToImage} newsUrl={element.url} author={element.author} publishedAt={element.publishedAt}  newsSource = {element.source.name}/>              
+              <NewsItem title={element.title} description={element.description} imageUrl={element.image} newsUrl={element.url} publishedAt={element.publishedAt}  newsSource = {element.source.name}/>              
             </div>
           })}
-        </div>
-          
+        </div>          
         </InfiniteScroll>
       </div>
     )
