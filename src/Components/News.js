@@ -45,53 +45,55 @@ export default class News extends Component {
       totalResults : jsonData.totalResults,
       maximumPages : maximumPages,
       loading : false,
-      pageNo: this.state.pageNo+1
+      pageNo: 1
     });
   }
 
-   onPreviousClick = async ()=>{
-     this.setState({loading : true})
-    console.log('prev');
+  //  onPreviousClick = async ()=>{
+  //    this.setState({loading : true})
+  //   console.log('prev');
 
-    let url=`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&pageSize=${this.props.articlesOnOnePage}&page=${this.state.pageNo}`;
-    // let url = "https://google.co.in";
-    let data = await fetch(url);
-    let jsonData= await data.json();
-    // console.log(jsonData);
-    this.setState({
-      articles : jsonData.articles,
-      loading : false,
-      pageNo : this.state.pageNo-1
-    });
-  }
+  //   let url=`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&pageSize=${this.props.articlesOnOnePage}&page=${this.state.pageNo}`;
+  //   // let url = "https://google.co.in";
+  //   let data = await fetch(url);
+  //   let jsonData= await data.json();
+  //   // console.log(jsonData);
+  //   this.setState({
+  //     articles : jsonData.articles,
+  //     loading : false,
+  //     pageNo : this.state.pageNo-1
+  //   });
+  // }
 
-  onNextClick = async ()=>{
-    this.setState({loading : true})
-    let url=`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&pageSize=${this.props.articlesOnOnePage}&page=${this.state.pageNo}`;
-    // let url = "https://google.co.in";
-    let data = await fetch(url);
-    let jsonData= await data.json();
-    // console.log(jsonData);
-    this.setState({
-      articles : jsonData.articles,
-      loading : false,
-      pageNo : this.state.pageNo+1
-    });
-  }
+  // onNextClick = async ()=>{
+  //   this.setState({loading : true})
+  //   let url=`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&pageSize=${this.props.articlesOnOnePage}&page=${this.state.pageNo}`;
+  //   // let url = "https://google.co.in";
+  //   let data = await fetch(url);
+  //   let jsonData= await data.json();
+  //   // console.log(jsonData);
+  //   this.setState({
+  //     articles : jsonData.articles,
+  //     loading : false,
+  //     pageNo : this.state.pageNo+1
+  //   });
+  // }
 
 
-  fetchData=async () =>{
-    this.setState({loading : true});
-    let url=`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&pageSize=${this.props.articlesOnOnePage}&page=${this.state.pageNo}`;
-    // let url = "https://google.co.in";
-    let data = await fetch(url);
-    let jsonData= await data.json();
-    // console.log(jsonData);    
-    this.setState({
-      articles : this.state.articles.concat(jsonData.articles),
-      loading : false,
-      pageNo : this.state.pageNo+1
-    });
+  fetchData=async () =>{    
+      this.setState({loading : true});
+      let url=`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&pageSize=${this.props.articlesOnOnePage}&page=${this.state.pageNo+1}`;
+      
+      // let url = "https://google.co.in";
+      let data = await fetch(url);
+      let jsonData= await data.json();
+      // console.log(jsonData);    
+      this.setState({
+        articles : this.state.articles.concat(jsonData.articles),
+        loading : false,
+        pageNo : this.state.pageNo+1
+      });
+    
   }
   render() {
     return (
@@ -102,6 +104,11 @@ export default class News extends Component {
         next={this.fetchData}
         hasMore={this.state.articles.length < this.state.totalResults}
         loader={<Loading/>}
+        endMessage={
+          <p style={{ textAlign: 'center' }}>
+            <b>Yay! You have seen it all</b>
+          </p>
+        }
         >
         <div className="newsItemContainer" style={{display : 'flex', flexWrap: 'wrap', justifyContent: 'space-around', border: ''}}>
           {/* {this.state.loading && <Loading />} */}
@@ -112,12 +119,7 @@ export default class News extends Component {
             </div>
           })}
         </div>
-          {/* {!this.state.loading &&           
-              <div className='container my-3 mx-3' style={{display : 'flex', justifyContent : 'space-between'}}>
-              <button disabled={this.state.pageNo<=1} type="button" className="btn btn-dark" onClick={this.onPreviousClick}>Previous</button>
-              <button disabled={this.state.pageNo+1<this.state.maximumPages?false: true} type="button" className="btn btn-dark" onClick={this.onNextClick}>Next</button>
-            </div>
-          } */}
+          
         </InfiniteScroll>
       </div>
     )
