@@ -24,10 +24,12 @@ export default class News extends Component {
   }
 
   async componentDidMount(){
-    let url=`https://newsapi.org/v2/top-headlines?country=in&apiKey=c2e7fbf6be224c7aa4df54f1f5c7d635&pageSize=${this.state.articlesOnOnePage}&page=${this.state.pageNo}`;
+    this.setState({loading : true});
+    let url=`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&pageSize=${this.props.articlesOnOnePage}&page=${this.state.pageNo}`;
     // let url = "https://google.co.in";
     let data = await fetch(url);
     let jsonData= await data.json();
+    console.log(jsonData);
     let maximumPages=Math.ceil((jsonData.totalResults)/this.props.articlesOnOnePage)+1;
     
     this.setState({
@@ -39,12 +41,14 @@ export default class News extends Component {
   }
 
    onPreviousClick = async ()=>{
+     this.setState({loading : true})
     console.log('prev');
 
-    let url=`https://newsapi.org/v2/top-headlines?country=in&apiKey=c2e7fbf6be224c7aa4df54f1f5c7d635&pageSize=${this.state.articlesOnOnePage}&page=${this.state.pageNo-1}`;
+    let url=`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&pageSize=${this.props.articlesOnOnePage}&page=${this.state.pageNo}`;
     // let url = "https://google.co.in";
     let data = await fetch(url);
     let jsonData= await data.json();
+    console.log(jsonData);
     this.setState({
       articles : jsonData.articles,
       loading : false,
@@ -53,11 +57,12 @@ export default class News extends Component {
   }
 
   onNextClick = async ()=>{
-    console.log('next');
-    let url=`https://newsapi.org/v2/top-headlines?country=in&apiKey=c2e7fbf6be224c7aa4df54f1f5c7d635&pageSize=${this.state.articlesOnOnePage}&page=${this.state.pageNo+1}`;
+    this.setState({loading : true})
+    let url=`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&pageSize=${this.props.articlesOnOnePage}&page=${this.state.pageNo}`;
     // let url = "https://google.co.in";
     let data = await fetch(url);
     let jsonData= await data.json();
+    console.log(jsonData);
     this.setState({
       articles : jsonData.articles,
       loading : false,
@@ -82,7 +87,7 @@ export default class News extends Component {
           {!this.state.loading &&           
               <div className='container my-3 mx-3' style={{display : 'flex', justifyContent : 'space-between'}}>
               <button disabled={this.state.pageNo<=1} type="button" className="btn btn-dark" onClick={this.onPreviousClick}>Previous</button>
-              <button disabled={this.state.pageNo+1>=this.state.maximumPages} type="button" className="btn btn-dark" onClick={this.onNextClick}>Next</button>
+              <button disabled={this.state.pageNo+1<this.state.maximumPages?false: true} type="button" className="btn btn-dark" onClick={this.onNextClick}>Next</button>
             </div>
           }
       </div>
