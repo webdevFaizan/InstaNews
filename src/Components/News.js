@@ -2,18 +2,25 @@ import React, { Component } from 'react'
 // import PropTypes from 'prop-types'
 import NewsItem from './NewsItem'
 import Loading from './Loading'
+import PropTypes from 'prop-types'
+
 
 export default class News extends Component {
 
+    static defaultProps = {
+      country : 'in',
+      category : 'entertainment'
+    }
 
-  // static propTypes = {
-  //   prop: PropTypes
-  // }
+    static propTypes = {    //This is not the compulsory object, this is compulsory only if we want to add some default value of proptypes or if we want to add the types specific to that particular propTypes. If we do not use this object even then we will have no problem. Since this is not compulsory.
+      country: PropTypes.string,
+      // country: PropTypes.element.isRequired,
+      category: PropTypes.string
+    }
 
 
     constructor(props){    
-    super(props);     
-    
+    super(props);         
     this.state = {      //In the function based component we used the setState react hook in order to change the state variable, here the state variable is not being changed by hook, but we will change the state using this.state.
       loading : true,   
       articles : [],
