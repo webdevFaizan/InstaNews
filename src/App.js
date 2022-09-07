@@ -16,7 +16,7 @@ export default class App extends Component {
         <Router>
           <NavBar />
           {/* <h1>Hi there this is my first class based react app</h1> */}
-          <News/>
+          <News articlesOnOnePage={20}/>
         </Router>
       </div>
     )
