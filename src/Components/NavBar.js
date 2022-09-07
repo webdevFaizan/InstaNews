@@ -28,12 +28,12 @@ export default class NavBar extends Component {
                   <li className="nav-item"><Link className="nav-link" to="/entertainment">Entertainment<span className="sr-only">(current)</span></Link></li>
                   <li className="nav-item"><Link className="nav-link" to="/breaking-news">General<span className="sr-only">(current)</span></Link></li>
                   <li className="nav-item"><Link className="nav-link" to="/health">Health<span className="sr-only">(current)</span></Link></li>
-                  <li className="nav-item"><Link className="nav-link" to="/science">Science<span className="sr-only">(current)</span></Link></li>
+                  {/* <li className="nav-item"><Link className="nav-link" to="/science">Science<span className="sr-only">(current)</span></Link></li> */}
                   <li className="nav-item"><Link className="nav-link" to="/sports">Sports<span className="sr-only">(current)</span></Link></li>
-                  <li className="nav-item"><Link className="nav-link" to="/nation">Sports<span className="sr-only">(current)</span></Link></li>
-                  <li className="nav-item"><Link className="nav-link" to="/world">Sports<span className="sr-only">(current)</span></Link></li>
+                  <li className="nav-item"><Link className="nav-link" to="/nation">Nation News<span className="sr-only">(current)</span></Link></li>
+                  <li className="nav-item"><Link className="nav-link" to="/world">World News<span className="sr-only">(current)</span></Link></li>
                 </ul>
-                <form className="form-inline my-2 my-lg-0">
+                <form className="form-inline my-2 my-lg-0" style={{display : 'none'}}>
                   <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
                   <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                 </form>

@@ -34,7 +34,7 @@ export default class News extends Component {
   async componentDidMount(){
     this.setState({loading : true});
     // let url=`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&pageSize=${this.props.articlesOnOnePage}&page=${this.state.pageNo}`;
-    let url=`https://gnews.io/api/v4/top-headlines?&token=${this.props.apiKey}&country=${this.props.country}&topic=${this.props.topic}`
+    let url=`https://gnews.io/api/v4/top-headlines?&token=${this.props.apiKey}&country=${this.props.country}&topic=${this.props.topic}&lang=${this.props.lang}&page=${this.state.pageNo+1}`;
     // let url = "https://google.co.in";
     let data = await fetch(url);
     let jsonData= await data.json();
@@ -46,7 +46,7 @@ export default class News extends Component {
       totalArticles : jsonData.totalArticles,
       maximumPages : maximumPages,
       loading : false,
-      pageNo: 1
+      pageNo: this.state.page+1
     });
   }
 
@@ -84,7 +84,7 @@ export default class News extends Component {
   fetchData=async () =>{    
       this.setState({loading : true});
       // let url=`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&pageSize=${this.props.articlesOnOnePage}&page=${this.state.pageNo+1}`;
-      let url=`https://gnews.io/api/v4/top-headlines?&token=${this.props.apiKey}&country=${this.props.country}&topic=${this.props.topic}`
+      let url=`https://gnews.io/api/v4/top-headlines?&token=${this.props.apiKey}&country=${this.props.country}&topic=${this.props.topic}&lang=${this.props.lang}&page=${this.state.pageNo+1}`;
       
       // let url = "https://google.co.in";
       let data = await fetch(url);
@@ -100,17 +100,12 @@ export default class News extends Component {
   render() {
     return (
       <div className='container' style={{display : 'flex',flexDirection: 'column',justifyContent: 'space-around', border: '', alignItems: 'center'}}>
-        <h1>Insta News - Top Headlines from all around the world.</h1>
+        <h1>{`Insta News - Top Headlines for ${this.props.topic}`}</h1>
         <InfiniteScroll
         dataLength={this.state.articles.length}
         next={this.fetchData}
         hasMore={this.state.articles.length < this.state.totalArticles}
-        loader={<Loading/>}
-        endMessage={
-          <p style={{ textAlign: 'center' }}>
-            <b>Yay! You have seen it all</b>
-          </p>
-        }
+        loader={<Loading/>}        
         >
         <div className="newsItemContainer" style={{display : 'flex', flexWrap: 'wrap', justifyContent: 'space-around', border: ''}}>
           {/* {this.state.loading && <Loading />} */}
