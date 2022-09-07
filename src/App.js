@@ -10,7 +10,7 @@ import React, { Component } from 'react'
 import News from './Components/News';
 
 export default class App extends Component {
-  cards = 20;
+  cards = 6;
   // apiKey= 'c2e7fbf6be224c7aa4df54f1f5c7d635';
   apiKey='b074e697def6492188c5345e46a6715f';
 
