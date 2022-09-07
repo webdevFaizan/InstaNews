@@ -39,7 +39,7 @@ export default class NewsItem extends React.Component {
             <p className="card-text" style={{marginBottom: 0, color : 'darkgrey'}}>{dateDisplay()}</p>
                   <p className="card-text" style={{color : 'darkgrey'}}>{timeDisplay()}</p>
             <a href={newsUrl} rel="noreferrer" target="_blank" className="btn btn-sm btn-primary">Read More...</a>
-                  {/* SLIGHTLY IMPORTANT : Usually in react we use Link and to for our work, but the main purpose of Link and to is to add append the current address with the given one so that we could go to the final address. And in case of href one will have absolute address that will be useful in the case of any external links, so in this case a and href will be more suitable*/}
+                  
           </div>
         </div>      
       </div>
