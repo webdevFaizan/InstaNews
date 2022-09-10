@@ -14,8 +14,8 @@ export default class NewsItem extends React.Component {
     
 
   render() {
-    let {title, description,  newsUrl,publishedAt, newsSource}= this.props;
-
+    let {title, description, imageUrl, newsUrl,publishedAt, newsSource}= this.props;
+    imageUrl= null;
 
     function dateDisplay(){
       let s = publishedAt.slice(0,publishedAt.length-1).split("T");
@@ -35,7 +35,8 @@ export default class NewsItem extends React.Component {
       <div>
         <div className="card my-3 mx-3" style={{width: "20rem"}}>
         {/* <img className="card-img-top" src={ !imageUrl?require('../news.webp').default : imageUrl} alt="..."/> */}
-        <img className="card-img-top" src='./images/news.webp' alt="..."/>
+        <img className="card-img-top" src={!imageUrl?'./images/news.webp' : imageUrl} alt="..."/>
+        {/* IMPORTANT : We are statically adding the image from our server to the front end, this could only possible because the image is kept on a public folder, image is kept in the images folder of public, if imageUrl is null, as I have manually commented it once, the default image is being shown. So if the image from the url is broken then this static image will be shown. I could not use requre('./news.webp') here since image was not loading with that, I have read somewhere that using require('./news.webp').default will work just fine.*/}
           <div className="card-body" style={{position : 'relative'}}>
           <span className="position-absolute translate-middle badge rounded bg-primary" style={{ top : '-4%', fontSize : 18, zIndex: 1}}>{newsSource}
                     </span>   
