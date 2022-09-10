@@ -35,6 +35,7 @@ export default class News extends Component {
     this.setState({loading : true});
     // let url=`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&pageSize=${this.props.articlesOnOnePage}&page=${this.state.pageNo}`;
     let url=`https://gnews.io/api/v4/top-headlines?&token=${this.props.apiKey}&country=${this.props.country}&topic=${this.props.topic}&lang=${this.props.lang}&page=${this.state.pageNo+1}`;
+    console.log(url);
     // let url = "https://google.co.in";
     let data = await fetch(url);
     let jsonData= await data.json();

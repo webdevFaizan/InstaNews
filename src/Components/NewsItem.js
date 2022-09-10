@@ -1,6 +1,8 @@
 import React from 'react'
 // import PropTypes from 'prop-types'
-import newsImg from '../news.webp'
+// import newsImg from '../news.webp'
+const newsImg = require('../news.webp');    //PENDING TASK : This line consists of a local file, but when we deploy this code on netlify, then this local file will be a problem, but I have researched the stack overflow, the import newsImg is not going to work here, instead the require statement may work this is why we are using the require statement.
+
 // Any file outside the src folder is not supported, so we have to move this static file to the src folder.
 
 export default class NewsItem extends React.Component {
