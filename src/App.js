@@ -11,8 +11,8 @@ import News from './Components/News';
 
 export default class App extends Component {
   // cards = 6;
-  // apiKey= '599c4ed196acc97c9c3da0f7cba7eccf';
-  apiKey= '62897480329c586505954b611b7ff361';
+  apiKey= '599c4ed196acc97c9c3da0f7cba7eccf';
+  // apiKey= '62897480329c586505954b611b7ff361';
   country='in';
   lang='en';
   // apiKey='b074e697def6492188c5345e46a6715f';
