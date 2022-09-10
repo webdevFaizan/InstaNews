@@ -5,6 +5,8 @@ import React from 'react'
 
 // Any file outside the src folder is not supported, so we have to move this static file to the src folder.
 
+// Random comment for a commit.
+
 export default class NewsItem extends React.Component {
   // static propTypes = {
   //   prop: PropTypes
