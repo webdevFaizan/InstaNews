@@ -15,7 +15,7 @@ export default class NewsItem extends React.Component {
 
   render() {
     let {title, description, imageUrl, newsUrl,publishedAt, newsSource}= this.props;
-    imageUrl= null;
+    // imageUrl= null;
 
     function dateDisplay(){
       let s = publishedAt.slice(0,publishedAt.length-1).split("T");
