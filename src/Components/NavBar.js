@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
+import React from 'react'
 // import PropTypes from 'prop-types'
 import {Link} from 'react-router-dom'
 
-export default class NavBar extends Component {
+const NavBar=()=>{
   // static propTypes = {    
   //   //Navbar is not receiving any propTypes, this is why this empty, also this object could be added to this class as a property. By delcaring NavBar.propTypes={<object>}
   //   // prop: PropTypes
@@ -11,7 +11,7 @@ export default class NavBar extends Component {
   //ComponentDidMount() method is also not required because we do not have any state variables to manage in this file.
 
 
-  render() {         //This render method is a kind of life cycle method, and there will be other methods running before the actual rendering of the html page takes place, and the main purpose of render method is to render the html.
+  // render() {         //This render method is a kind of life cycle method, and there will be other methods running before the actual rendering of the html page takes place, and the main purpose of render method is to render the html.
     return (
       <div style={{position : 'fixed', width : '100%', zIndex : '2'}}>
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -42,4 +42,5 @@ export default class NavBar extends Component {
       </div>
     )
   }
-}
+
+export default NavBar;

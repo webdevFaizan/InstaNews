@@ -7,29 +7,21 @@ import React from 'react'
 
 // Random comment for a commit.
 
-export default class NewsItem extends React.Component {
-  // static propTypes = {
-  //   prop: PropTypes
-  // }
-    
+function dateDisplay(publishedAt){
+  let s = publishedAt.slice(0,publishedAt.length-1).split("T");
+  let str = "Published On : "+ s[0];
+  return str;
+}
 
-  render() {
-    let {title, description, imageUrl, newsUrl,publishedAt, newsSource}= this.props;
-    // imageUrl= null;
+function timeDisplay(publishedAt){
+  let s = publishedAt.slice(0,publishedAt.length-1).split("T");
+  // "Published On :  "+ 
+  let str = "Time : "+ s[1];
+  return str;
+}
 
-    function dateDisplay(){
-      let s = publishedAt.slice(0,publishedAt.length-1).split("T");
-      let str = "Published On : "+ s[0];
-      return str;
-    }
-
-    function timeDisplay(){
-      let s = publishedAt.slice(0,publishedAt.length-1).split("T");
-      // "Published On :  "+ 
-      let str = "Time : "+ s[1];
-      return str;
-    }
-    
+const NewsItem = (props)=>{
+    let {title, description, imageUrl, newsUrl,publishedAt, newsSource}= props;
     
     return (
       <div>
@@ -42,8 +34,8 @@ export default class NewsItem extends React.Component {
                     </span>   
             <h5 className="card-title">{title}</h5>
             <p className="card-text">{description}</p>
-            <p className="card-text" style={{marginBottom: 0, color : 'darkgrey'}}>{dateDisplay()}</p>
-                  <p className="card-text" style={{color : 'darkgrey'}}>{timeDisplay()}</p>
+            <p className="card-text" style={{marginBottom: 0, color : 'darkgrey'}}>{dateDisplay(publishedAt)}</p>
+                  <p className="card-text" style={{color : 'darkgrey'}}>{timeDisplay(publishedAt)}</p>
             <a href={newsUrl} rel="noreferrer" target="_blank" className="btn btn-sm btn-primary">Read More...</a>
                   
           </div>
@@ -51,7 +43,8 @@ export default class NewsItem extends React.Component {
       </div>
     )
   }
-}
+
+  export default NewsItem;
 
 
 
