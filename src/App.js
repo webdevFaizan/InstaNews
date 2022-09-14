@@ -1,3 +1,8 @@
+
+
+// FIRST GO TO THE READMEFIRST.TXT FILE, I HAVE ADDED SOME IMPORTANT POINTS.
+
+
 import './App.css';
 import NavBar from './Components/NavBar';
 import LoadingBar from 'react-top-loading-bar';

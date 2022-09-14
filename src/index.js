@@ -1,3 +1,8 @@
+
+// FIRST GO TO THE READMEFIRST.TXT FILE, I HAVE ADDED SOME IMPORTANT POINTS.
+
+
+
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';

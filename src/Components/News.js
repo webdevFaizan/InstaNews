@@ -7,10 +7,8 @@ import InfiniteScroll from 'react-infinite-scroll-component'
 
 
 // <News key='home' loadingBarChange={  loadingBarChange} apiKey={  apiKey}   country={  country} lang={  lang}  topic='breaking-news'/>
-const  News = (props)=>{    
-
-  let {loadingBarChange, apiKey, country, lang, topic}=props;
-  
+const  News = (props)=>{
+  let {loadingBarChange, apiKey, country, lang, topic}=props;  
   let [loading, setLoading] = useState(true);
   let [articles, setArticles] = useState([]);
   // let [pageNo, setPageNo] = useState(1);
@@ -33,7 +31,7 @@ const  News = (props)=>{
 
   useEffect(()=>{
     async function updateNews(){
-      setLoading(true);
+      setLoading(true);   //This set loading is an asycnronous method, so if we are going to use the state being changed inside this method, we must take care of this. If we do not then a very weird behaviour might occur.
       loadingBarChange(0);
       // let url=`https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=${props.apiKey}&pageSize=${props.articlesOnOnePage}&page=${ pageNo}`;
       let url=`https://gnews.io/api/v4/top-headlines?&token=${apiKey}&country=${country}&topic=${topic}&lang=${lang}`;
@@ -56,6 +54,8 @@ const  News = (props)=>{
       loadingBarChange(100);    
     }
     updateNews();
+    // eslint-disable-next-line
+    // This eslline-disable-next-line is not just a comment, it will help us remove the error we were getting which we tried to solve so hard.
   },[]);
 
   //  onPreviousClick = async ()=>{
