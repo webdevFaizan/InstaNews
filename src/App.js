@@ -12,8 +12,9 @@ import News from './Components/News';
 
 export default class App extends Component {
   // cards = 6;
-  apiKey= '599c4ed196acc97c9c3da0f7cba7eccf';
+  // apiKey= '599c4ed196acc97c9c3da0f7cba7eccf';
   // apiKey= '62897480329c586505954b611b7ff361';
+  apiKey= process.env.REACT_APP_API_KEY;
   country='in';
   lang='en';
   // apiKey='b074e697def6492188c5345e46a6715f';
@@ -44,19 +45,19 @@ export default class App extends Component {
   render() {
     return (
       <div>
-        <Router>
+        <Router>          
+          <NavBar />
           <LoadingBar
             color={this.state.color}
             progress={this.state.progress}
             shadow = 'false'
-            height={2}
+            height={3}
             waitingTime ={1000}
             onLoaderFinished={() => {
                 this.afterLoadComplete();
               }              
             }
           />
-          <NavBar />
           {/* <h1>Hi there this is my first class based react app</h1> */}
           <Routes>
           {/* // <News articlesOnOnePage={20}/> */}
@@ -72,6 +73,7 @@ export default class App extends Component {
             {/* <Route exact path='/science ' element={<News key='science ' apiKey={this.apiKey}   country={this.country} lang={this.lang} topic='science'/>}/> */}
             <Route exact path='/health' element={<News key='health' loadingBarChange={this.loadingBarChange} apiKey={this.apiKey}   country={this.country} lang={this.lang} topic='health'/>}/>
           </Routes>
+          
         </Router>
       </div>
     )

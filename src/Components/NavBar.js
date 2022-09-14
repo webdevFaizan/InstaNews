@@ -13,7 +13,7 @@ export default class NavBar extends Component {
 
   render() {         //This render method is a kind of life cycle method, and there will be other methods running before the actual rendering of the html page takes place, and the main purpose of render method is to render the html.
     return (
-      <div>
+      <div style={{position : 'fixed', width : '100%', zIndex : '2'}}>
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
             <Link className="navbar-brand" to="/">Insta News</Link>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
