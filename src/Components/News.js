@@ -6,11 +6,14 @@ import PropTypes from 'prop-types'
 import InfiniteScroll from 'react-infinite-scroll-component'
 
 
+// <News key='home' loadingBarChange={  loadingBarChange} apiKey={  apiKey}   country={  country} lang={  lang}  topic='breaking-news'/>
 const  News = (props)=>{    
+
+  let {loadingBarChange, apiKey, country, lang, topic}=props;
   
   let [loading, setLoading] = useState(true);
   let [articles, setArticles] = useState([]);
-  let [pageNo, setPageNo] = useState(1);
+  // let [pageNo, setPageNo] = useState(1);
   let [totalArticles, setTotalArticles] = useState(0);
   // let [maximumPages, setMaximumPages] = useState(0);
   
@@ -29,18 +32,18 @@ const  News = (props)=>{
   
 
   useEffect(()=>{
-    const updateNews=async()=>{
+    async function updateNews(){
       setLoading(true);
-      props.loadingBarChange(0);
+      loadingBarChange(0);
       // let url=`https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=${props.apiKey}&pageSize=${props.articlesOnOnePage}&page=${ pageNo}`;
-      let url=`https://gnews.io/api/v4/top-headlines?&token=${props.apiKey}&country=${props.country}&topic=${props.topic}&lang=${props.lang}&page=${ pageNo+1}`;
+      let url=`https://gnews.io/api/v4/top-headlines?&token=${apiKey}&country=${country}&topic=${topic}&lang=${lang}`;
       console.log(url);
-      props.loadingBarChange(10);
+      loadingBarChange(10);
       // let url = "https://google.co.in";
       let data = await fetch(url);
-      props.loadingBarChange(50);
+      loadingBarChange(50);
       let jsonData= await data.json();
-      props.loadingBarChange(70);
+      loadingBarChange(70);
       // console.log(jsonData);
       // let maximumPages=Math.ceil((jsonData.totalArticles)/10)+1;
       
@@ -48,9 +51,9 @@ const  News = (props)=>{
       setTotalArticles(jsonData.totalArticles);
       // setMaximumPages(maximumPages);
       setLoading(false);
-      setPageNo(pageNo+1);
+      // setPageNo(pageNo+1);
       
-      props.loadingBarChange(100);    
+      loadingBarChange(100);    
     }
     updateNews();
   },[]);
@@ -89,7 +92,7 @@ const  News = (props)=>{
   const fetchData=async () =>{    
       setLoading(true);
       // let url=`https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=${props.apiKey}&pageSize=${props.articlesOnOnePage}&page=${ pageNo+1}`;
-      let url=`https://gnews.io/api/v4/top-headlines?&token=${props.apiKey}&country=${props.country}&topic=${props.topic}&lang=${props.lang}&page=${ pageNo+1}`;
+      let url=`https://gnews.io/api/v4/top-headlines?&token=${props.apiKey}&country=${props.country}&topic=${props.topic}&lang=${props.lang}`;
       
       // let url = "https://google.co.in";
       let data = await fetch(url);
@@ -97,7 +100,7 @@ const  News = (props)=>{
       // console.log(jsonData);    
       setArticles(articles.concat(jsonData.articles));
       setLoading(false);
-      setPageNo(pageNo+1);
+      // setPageNo(pageNo+1);
       // this.setState({
       //   articles :  articles.concat(jsonData.articles),
       //   loading : false,
