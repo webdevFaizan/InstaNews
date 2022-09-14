@@ -31,14 +31,18 @@ export default class News extends Component {
     }
   }
 
-  async componentDidMount(){
+  componentDidMount=async()=>{
     this.setState({loading : true});
+    this.props.loadingBarChange(0);
     // let url=`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&pageSize=${this.props.articlesOnOnePage}&page=${this.state.pageNo}`;
     let url=`https://gnews.io/api/v4/top-headlines?&token=${this.props.apiKey}&country=${this.props.country}&topic=${this.props.topic}&lang=${this.props.lang}&page=${this.state.pageNo+1}`;
     console.log(url);
+    this.props.loadingBarChange(10);
     // let url = "https://google.co.in";
     let data = await fetch(url);
+    this.props.loadingBarChange(50);
     let jsonData= await data.json();
+    this.props.loadingBarChange(70);
     // console.log(jsonData);
     let maximumPages=Math.ceil((jsonData.totalArticles)/10)+1;
     
@@ -48,6 +52,8 @@ export default class News extends Component {
       maximumPages : maximumPages,
       loading : false,
       pageNo: this.state.page+1
+    },()=>{
+      this.props.loadingBarChange(100);
     });
   }
 
